@@ -1,0 +1,23 @@
+<html>
+<head>
+    <title>(sample) MJPG-streamer -> CANVAS Tag</title>
+</head>
+<body>
+<canvas id="canvas" width="400" height="400"></canvas>
+<script>
+const canvas = document.getElementById('canvas');
+const context = canvas.getContext('2d');
+
+function render() {
+    const image = new Image();
+    image.onload = function(){
+      canvas.getContext("2d").drawImage(image, 0, 0, 400, 400);
+    }
+    // ↓ MJPG-streamerの静止画像をロード
+    image.src = "http://xxxxxx:xxxx/?action=snapshot";
+    requestAnimationFrame(render);
+}
+render();
+</script>
+</body>
+</html>
